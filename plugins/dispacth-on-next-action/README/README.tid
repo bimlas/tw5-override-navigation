@@ -1,0 +1,18 @@
+tags:
+title: $:/plugins/bimlas/dispatch-on-next-action/README/README
+type: text/vnd.tiddlywiki
+
+! Dispatch on next action: handle events differently
+
+* https://gitlab.com/bimlas/tw5-dispatch-on-next-action (official repository)
+* https://github.com/bimlas/tw5-dispatch-on-next-action (mirror, ''please star if you like it'')
+
+!! Installation instructions
+
+To add the plugin to your own ~TiddlyWiki5, drag this link to the browser window and any of the example buttons from the demo page:
+
+$:/plugins/bimlas/dispatch-on-next-action
+
+For other installation options see the repositories above.
+
+//Select the next tab to continue.//
