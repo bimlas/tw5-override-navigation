@@ -1,0 +1,21 @@
+caption: {{$:/core/images/open-window}} open next link in new window
+created: 20190714190442238
+description: Open next link in new window
+modified: 20190715215658876
+tags: $:/tags/PageControls
+title: Open in new window
+type: text/vnd.tiddlywiki
+
+\whitespace trim
+<$button tooltip="Open next link in new window" aria-label="open next link in new window" class=<<tv-config-toolbar-class>>>
+<$action-handlenextlink $message="tm-open-window"/>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/core/images/open-window}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text">
+<$text text=" "/>
+<$text text="open next link in new window"/>
+</span>
+</$list>
+</$button>

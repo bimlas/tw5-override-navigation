@@ -1,0 +1,21 @@
+caption: {{$:/core/images/linkify}} copy title of next link
+created: 20190714123958313
+description: Copy title of next link
+modified: 20190715214724589
+tags: $:/tags/PageControls
+title: Copy title
+type: text/vnd.tiddlywiki
+
+\whitespace trim
+<$button tooltip="Copy title of next link" aria-label="copy title of next link" class=<<tv-config-toolbar-class>>>
+<$action-handlenextlink $message="tm-copy-to-clipboard" $linkifyTitle="yes"/>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/core/images/linkify}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text">
+<$text text=" "/>
+<$text text="copy title of next link"/>
+</span>
+</$list>
+</$button>
