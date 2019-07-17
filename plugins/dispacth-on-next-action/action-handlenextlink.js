@@ -16,17 +16,17 @@ var Widget = require("$:/core/modules/widgets/widget.js").widget;
 
 var HandlenextlinkWidget = function (parseTreeNode, options) {
 	this.initialise(parseTreeNode, options);
-	this.active = false;
+	this._stateTitle = "$:/state/bimlas/dispatch-on-next-action";
 	var self = this;
 	$tw.hooks.addHook("th-navigating", function (event) {
-		if (!self.active) return event;
+		if (!self._isActive()) return event;
 		$tw.utils.nextTick(function () {
 			self.dispatchCustomEvent(event.navigateTo);
 		});
 		return false;
 	});
 	this.wiki.addEventListener("change", function (changedTiddlers) {
-		if (!self.active) return;
+		if (!self._isActive()) return;
 		var changedTitle = Object.keys(changedTiddlers)[0];
 		if (!changedTitle.startsWith("$:/state/tab")) return;
 		$tw.utils.nextTick(function () {
@@ -74,17 +74,27 @@ HandlenextlinkWidget.prototype.refresh = function (changedTiddlers) {
 Invoke the action associated with this widget
 */
 HandlenextlinkWidget.prototype.invokeAction = function (triggeringWidget, event) {
-	this.active = !this.active;
+	if(this._isActive()) {
+		$tw.wiki.deleteTiddler(this._stateTitle);
+	} else {
+		$tw.wiki.setTiddlerData(this._stateTitle, this.attributes);
+	}
 	return true; // Action was invoked
 };
 
+HandlenextlinkWidget.prototype._isActive = function () {
+	var state = $tw.wiki.getTiddlerData(this._stateTitle, {});
+	return state.type === this.getAttribute("type");
+};
+
 HandlenextlinkWidget.prototype.dispatchCustomEvent = function (param) {
+	var attributes = $tw.wiki.getTiddlerData(this._stateTitle, {});
 	if (this.linkifyTitle) {
 		param = "[[" + param + "]]";
 	}
-	this.attributes.param = param;
-	this.dispatchEvent(this.attributes);
-	this.active = false;
+	attributes.param = param;
+	this.dispatchEvent(attributes);
+	$tw.wiki.deleteTiddler(this._stateTitle);
 };
 
 exports["action-handlenextlink"] = HandlenextlinkWidget;
