@@ -8,7 +8,7 @@ type: text/vnd.tiddlywiki
 
 \whitespace trim
 <$button tooltip="Copy title of next link" aria-label="copy title of next link" class=<<tv-config-toolbar-class>>>
-<$action-handlenextlink $message="tm-copy-to-clipboard" $linkifyTitle="yes"/>
+<$action-handlenextlink type="tm-copy-to-clipboard" $linkifyTitle="yes"/>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 {{$:/core/images/linkify}}
 </$list>

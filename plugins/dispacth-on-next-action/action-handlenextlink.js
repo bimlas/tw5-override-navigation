@@ -52,8 +52,10 @@ HandlenextlinkWidget.prototype.render = function (parent, nextSibling) {
 Compute the internal state of the widget
 */
 HandlenextlinkWidget.prototype.execute = function () {
-	this.message = this.getAttribute("$message");
-	this.linkifyTitle = this.getAttribute("$linkifyTitle") === "yes";
+	if($tw.utils.hop(this.attributes,"$linkifyTitle")) {
+		this.linkifyTitle = this.getAttribute("$linkifyTitle") === "yes";
+		delete this.attributes["$linkifyTitle"];
+	}
 };
 
 /*
@@ -61,7 +63,7 @@ Refresh the widget by ensuring our attributes are up to date
 */
 HandlenextlinkWidget.prototype.refresh = function (changedTiddlers) {
 	var changedAttributes = this.computeAttributes();
-	if (changedAttributes["$message"]) {
+	if (Object.keys(changedAttributes).length === 0) {
 		this.refreshSelf();
 		return true;
 	}
@@ -80,10 +82,8 @@ HandlenextlinkWidget.prototype.dispatchCustomEvent = function (param) {
 	if (this.linkifyTitle) {
 		param = "[[" + param + "]]";
 	}
-	this.dispatchEvent({
-		type: this.message,
-		param: param
-	});
+	this.attributes.param = param;
+	this.dispatchEvent(this.attributes);
 	this.active = false;
 };
 
