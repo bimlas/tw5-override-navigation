@@ -21,7 +21,7 @@ var HandlenextlinkWidget = function (parseTreeNode, options) {
 	$tw.hooks.addHook("th-navigating", function (event) {
 		if (!self._isActive()) return event;
 		$tw.utils.nextTick(function () {
-			self.dispatchCustomEvent(event.navigateTo);
+			self._dispatchCustomEvent(event.navigateTo);
 		});
 		return false;
 	});
@@ -30,7 +30,7 @@ var HandlenextlinkWidget = function (parseTreeNode, options) {
 		var changedTitle = Object.keys(changedTiddlers)[0];
 		if (!changedTitle.startsWith("$:/state/tab")) return;
 		$tw.utils.nextTick(function () {
-			self.dispatchCustomEvent($tw.wiki.getTextReference(changedTitle));
+			self._dispatchCustomEvent($tw.wiki.getTextReference(changedTitle));
 		});
 	});
 };
@@ -53,7 +53,7 @@ Compute the internal state of the widget
 */
 HandlenextlinkWidget.prototype.execute = function () {
 	if($tw.utils.hop(this.attributes,"$linkifyTitle")) {
-		this.linkifyTitle = this.getAttribute("$linkifyTitle") === "yes";
+		this._linkifyTitle = this.getAttribute("$linkifyTitle") === "yes";
 		delete this.attributes["$linkifyTitle"];
 	}
 };
@@ -87,9 +87,9 @@ HandlenextlinkWidget.prototype._isActive = function () {
 	return state.type === this.getAttribute("type");
 };
 
-HandlenextlinkWidget.prototype.dispatchCustomEvent = function (param) {
+HandlenextlinkWidget.prototype._dispatchCustomEvent = function (param) {
 	var attributes = $tw.wiki.getTiddlerData(this._stateTitle, {});
-	if (this.linkifyTitle) {
+	if (this._linkifyTitle) {
 		param = "[[" + param + "]]";
 	}
 	attributes.param = param;
