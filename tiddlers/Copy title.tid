@@ -9,20 +9,21 @@ type: text/vnd.tiddlywiki
 \whitespace trim
 
 \define copy-title-button(class)
-<$button tooltip="Copy title of next link" aria-label="copy title of next link" class="""$(tv-config-toolbar-class)$ $class$""">
-<$action-handlenextlink $buttonID=<<qualify>> type="tm-copy-to-clipboard" $linkifyTitle="yes"/>
-<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
-{{$:/core/images/linkify}}
-</$list>
-<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
-<span class="tc-btn-text">
-<$text text=" "/>
-<$text text="copy title of next link"/>
-</span>
-</$list>
-</$button>
+	<$button tooltip="Copy title of next link" aria-label="copy title of next link"
+		class="""$(tv-config-toolbar-class)$ $class$""">
+		<$action-handlenextlink $buttonID=<<qualify>> type="tm-copy-to-clipboard" $linkifyTitle="yes"/>
+			<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+				{{$:/core/images/linkify}}
+			</$list>
+			<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+				<span class="tc-btn-text">
+					<$text text=" " />
+					<$text text="copy title of next link" />
+				</span>
+			</$list>
+	</$button>
 \end
 
 <$list filter="[[$:/state/bimlas/dispatch-on-next-action]contains:button-id<qualify>]" emptyMessage=<<copy-title-button>> variable="doNotOverrideCurrent">
-<<copy-title-button "tc-selected">>
+	<<copy-title-button "tc-selected">>
 </$list>
