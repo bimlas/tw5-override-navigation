@@ -1,14 +1,16 @@
 caption: {{$:/core/images/edit-button}} open next link in edit mode
 created: 20190713145834376
 description: Open next link in edit mode
-modified: 20190715214810980
+modified: 20190719104423550
 tags: $:/tags/PageControls
 title: Open in edit mode
 type: text/vnd.tiddlywiki
 
 \whitespace trim
-<$button tooltip="Open next link in edit mode" aria-label="open next link in edit mode" class=<<tv-config-toolbar-class>>>
-<$action-handlenextlink type="tm-edit-tiddler"/>
+
+\define open-in-edit-mode-button(class)
+<$button tooltip="Open next link in edit mode" aria-label="open next link in edit mode" class="""$(tv-config-toolbar-class)$ $class$""">
+<$action-handlenextlink $buttonID=<<qualify>> type="tm-edit-tiddler"/>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 {{$:/core/images/edit-button}}
 </$list>
@@ -19,3 +21,8 @@ type: text/vnd.tiddlywiki
 </span>
 </$list>
 </$button>
+\end
+
+<$list filter="[[$:/state/bimlas/dispatch-on-next-action]contains:button-id<qualify>]" emptyMessage=<<open-in-edit-mode-button>> variable="doNotOverrideCurrent">
+<<open-in-edit-mode-button "tc-selected">>
+</$list>

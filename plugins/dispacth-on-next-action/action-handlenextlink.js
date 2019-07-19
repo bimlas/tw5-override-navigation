@@ -52,6 +52,8 @@ HandlenextlinkWidget.prototype.render = function (parent, nextSibling) {
 Compute the internal state of the widget
 */
 HandlenextlinkWidget.prototype.execute = function () {
+	this._buttonID = this.getAttribute("$buttonID");
+	delete this.attributes["$buttonID"];
 	if($tw.utils.hop(this.attributes,"$linkifyTitle")) {
 		this._linkifyTitle = this.getAttribute("$linkifyTitle") === "yes";
 		delete this.attributes["$linkifyTitle"];
@@ -77,7 +79,7 @@ HandlenextlinkWidget.prototype.invokeAction = function (triggeringWidget, event)
 	if(this._isActive()) {
 		$tw.wiki.deleteTiddler(this._stateTitle);
 	} else {
-		$tw.wiki.setTiddlerData(this._stateTitle, this.attributes);
+		$tw.wiki.setTiddlerData(this._stateTitle, this.attributes, {"button-id": this._buttonID});
 	}
 	return true; // Action was invoked
 };

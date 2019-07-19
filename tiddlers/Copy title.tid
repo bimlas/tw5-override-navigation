@@ -1,14 +1,16 @@
 caption: {{$:/core/images/linkify}} copy title of next link
 created: 20190714123958313
 description: Copy title of next link
-modified: 20190715214724589
+modified: 20190719104416665
 tags: $:/tags/PageControls
 title: Copy title
 type: text/vnd.tiddlywiki
 
 \whitespace trim
-<$button tooltip="Copy title of next link" aria-label="copy title of next link" class=<<tv-config-toolbar-class>>>
-<$action-handlenextlink type="tm-copy-to-clipboard" $linkifyTitle="yes"/>
+
+\define copy-title-button(class)
+<$button tooltip="Copy title of next link" aria-label="copy title of next link" class="""$(tv-config-toolbar-class)$ $class$""">
+<$action-handlenextlink $buttonID=<<qualify>> type="tm-copy-to-clipboard" $linkifyTitle="yes"/>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 {{$:/core/images/linkify}}
 </$list>
@@ -19,3 +21,8 @@ type: text/vnd.tiddlywiki
 </span>
 </$list>
 </$button>
+\end
+
+<$list filter="[[$:/state/bimlas/dispatch-on-next-action]contains:button-id<qualify>]" emptyMessage=<<copy-title-button>> variable="doNotOverrideCurrent">
+<<copy-title-button "tc-selected">>
+</$list>

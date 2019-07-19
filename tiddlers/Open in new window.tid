@@ -1,14 +1,16 @@
 caption: {{$:/core/images/open-window}} open next link in new window
 created: 20190714190442238
 description: Open next link in new window
-modified: 20190715215658876
+modified: 20190719104220824
 tags: $:/tags/PageControls
 title: Open in new window
 type: text/vnd.tiddlywiki
 
 \whitespace trim
-<$button tooltip="Open next link in new window" aria-label="open next link in new window" class=<<tv-config-toolbar-class>>>
-<$action-handlenextlink type="tm-open-window"/>
+
+\define open-in-new-window-button(class)
+<$button tooltip="Open next link in new window" aria-label="open next link in new window" class="""$(tv-config-toolbar-class)$ $class$""">
+<$action-handlenextlink $buttonID=<<qualify>> type="tm-open-window"/>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 {{$:/core/images/open-window}}
 </$list>
@@ -19,3 +21,8 @@ type: text/vnd.tiddlywiki
 </span>
 </$list>
 </$button>
+\end
+
+<$list filter="[[$:/state/bimlas/dispatch-on-next-action]contains:button-id<qualify>]" emptyMessage=<<open-in-new-window-button>> variable="doNotOverrideCurrent">
+<<open-in-new-window-button "tc-selected">>
+</$list>
