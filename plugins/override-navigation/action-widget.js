@@ -52,8 +52,10 @@ OverridenavigationWidget.prototype.render = function (parent, nextSibling) {
 Compute the internal state of the widget
 */
 OverridenavigationWidget.prototype.execute = function () {
-	this._buttonID = this.getAttribute("$buttonID");
-	delete this.attributes["$buttonID"];
+	if ($tw.utils.hop(this.attributes, "$buttonID")) {
+		this._buttonID = this.getAttribute("$buttonID");
+		delete this.attributes["$buttonID"];
+	}
 	if($tw.utils.hop(this.attributes,"$linkifyTitle")) {
 		this._linkifyTitle = this.getAttribute("$linkifyTitle") === "yes";
 		delete this.attributes["$linkifyTitle"];
