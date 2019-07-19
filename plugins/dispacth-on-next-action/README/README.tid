@@ -4,15 +4,27 @@ type: text/vnd.tiddlywiki
 
 ! Dispatch on next action: handle events differently
 
+The plugin contains a new `action-handlenextlink` [[ActionWidget|https://tiddlywiki.com/#ActionWidgets]], which instead of performing the action immediately, performs it at the next navigation (when you open an internal link) or tab switch. For example, we can determine that if we click on a link, we would like to copy its title instead of opening it.
+
 * https://gitlab.com/bimlas/tw5-dispatch-on-next-action (official repository)
 * https://github.com/bimlas/tw5-dispatch-on-next-action (mirror, ''please star if you like it'')
 
+All the parameters you specify (expect special parameters) will be passed to the [[Widget.prototype.dispatchEvent|https://tiddlywiki.com/#%24%3A%2Fcore%2Fmodules%2Fwidgets%2Fwidget.js]] method, `param` will be the title of the link. The special parameters are:
+
+; $linkifyTitle
+: If `yes`, the link title will be wikified (`title` -> `[[title]]`)
+
+; $buttonID
+: Identifier of the button, needed to highlight it if it's active
+
+!! Known restrictions
+
+The tab change cannot be prevented; in technical language: opening the link is override, tab switching extends the event.
+
 !! Installation instructions
 
-To add the plugin to your own ~TiddlyWiki5, drag this link to the browser window and any of the example buttons from the demo page:
+To add the plugin to your own ~TiddlyWiki5, drag this link to the browser window and any of the [[example buttons|Example buttons]] from the demo page:
 
 $:/plugins/bimlas/dispatch-on-next-action
 
 For other installation options see the repositories above.
-
-//Select the next tab to continue.//

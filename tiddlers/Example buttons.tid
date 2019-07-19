@@ -1,0 +1,9 @@
+created: 20190719111510052
+modified: 20190719112144401
+tags: 
+title: Example buttons
+type: text/vnd.tiddlywiki
+
+You can try these buttons from the page controls menu:
+
+<<list-links filter:"[tag[$:/tags/PageControls]search[action-handlenextlink]]">>
