@@ -1,7 +1,7 @@
 :demo-page: https://bimlas.gitlab.io/tw5-override-navigation/
 :json: https://bimlas.gitlab.io/tw5-override-navigation/tw5-override-navigation.json
 
-= "Dispatch on next action" plugin for TiddlyWiki 5
+= "Override navigation" plugin for TiddlyWiki 5
 
 For details, see the link:{demo-page}[demo page].
 
