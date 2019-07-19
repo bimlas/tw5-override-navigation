@@ -6,4 +6,4 @@ type: text/vnd.tiddlywiki
 
 You can try these buttons from the page controls menu:
 
-<<list-links filter:"[tag[$:/tags/PageControls]search[action-handlenextlink]]">>
+<<list-links filter:"[tag[$:/tags/PageControls]search[action-overridenavigation]]">>

@@ -1,12 +1,12 @@
-:demo-page: https://bimlas.gitlab.io/tw5-dispatch-on-next-action/
-:json: https://bimlas.gitlab.io/tw5-dispatch-on-next-action/tw5-dispatch-on-next-action.json
+:demo-page: https://bimlas.gitlab.io/tw5-override-navigation/
+:json: https://bimlas.gitlab.io/tw5-override-navigation/tw5-override-navigation.json
 
 = "Dispatch on next action" plugin for TiddlyWiki 5
 
 For details, see the link:{demo-page}[demo page].
 
-* https://gitlab.com/bimlas/tw5-dispatch-on-next-action (official repository)
-* https://github.com/bimlas/tw5-dispatch-on-next-action (mirror, *please star if you like it*)
+* https://gitlab.com/bimlas/tw5-override-navigation (official repository)
+* https://github.com/bimlas/tw5-override-navigation (mirror, *please star if you like it*)
 
 == How to install?
 

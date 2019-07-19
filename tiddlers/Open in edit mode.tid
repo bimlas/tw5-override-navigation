@@ -11,7 +11,7 @@ type: text/vnd.tiddlywiki
 \define open-in-edit-mode-button(class)
 	<$button tooltip="Open next link in edit mode" aria-label="open next link in edit mode"
 		class="""$(tv-config-toolbar-class)$ $class$""">
-		<$action-handlenextlink $buttonID=<<qualify>> type="tm-edit-tiddler"/>
+		<$action-overridenavigation $buttonID=<<qualify>> type="tm-edit-tiddler"/>
 			<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 				{{$:/core/images/edit-button}}
 			</$list>

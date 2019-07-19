@@ -1,5 +1,5 @@
 /*\
-title: $:/plugins/bimlas/handle-next-link-widget/action-widget.js
+title: $:/plugins/bimlas/override-navigation/action-widget.js
 type: application/javascript
 module-type: widget
 
@@ -14,7 +14,7 @@ Action widget to override next navigation (opening internal link or selecting ta
 
 var Widget = require("$:/core/modules/widgets/widget.js").widget;
 
-var HandlenextlinkWidget = function (parseTreeNode, options) {
+var OverridenavigationWidget = function (parseTreeNode, options) {
 	this.initialise(parseTreeNode, options);
 	this._stateTitle = "$:/state/bimlas/dispatch-on-next-action";
 	var self = this;
@@ -38,12 +38,12 @@ var HandlenextlinkWidget = function (parseTreeNode, options) {
 /*
 Inherit from the base widget class
 */
-HandlenextlinkWidget.prototype = new Widget();
+OverridenavigationWidget.prototype = new Widget();
 
 /*
 Render this widget into the DOM
 */
-HandlenextlinkWidget.prototype.render = function (parent, nextSibling) {
+OverridenavigationWidget.prototype.render = function (parent, nextSibling) {
 	this.computeAttributes();
 	this.execute();
 };
@@ -51,7 +51,7 @@ HandlenextlinkWidget.prototype.render = function (parent, nextSibling) {
 /*
 Compute the internal state of the widget
 */
-HandlenextlinkWidget.prototype.execute = function () {
+OverridenavigationWidget.prototype.execute = function () {
 	this._buttonID = this.getAttribute("$buttonID");
 	delete this.attributes["$buttonID"];
 	if($tw.utils.hop(this.attributes,"$linkifyTitle")) {
@@ -63,7 +63,7 @@ HandlenextlinkWidget.prototype.execute = function () {
 /*
 Refresh the widget by ensuring our attributes are up to date
 */
-HandlenextlinkWidget.prototype.refresh = function (changedTiddlers) {
+OverridenavigationWidget.prototype.refresh = function (changedTiddlers) {
 	var changedAttributes = this.computeAttributes();
 	if (Object.keys(changedAttributes).length === 0) {
 		this.refreshSelf();
@@ -75,7 +75,7 @@ HandlenextlinkWidget.prototype.refresh = function (changedTiddlers) {
 /*
 Invoke the action associated with this widget
 */
-HandlenextlinkWidget.prototype.invokeAction = function (triggeringWidget, event) {
+OverridenavigationWidget.prototype.invokeAction = function (triggeringWidget, event) {
 	if(this._isActive()) {
 		$tw.wiki.deleteTiddler(this._stateTitle);
 	} else {
@@ -84,12 +84,12 @@ HandlenextlinkWidget.prototype.invokeAction = function (triggeringWidget, event)
 	return true; // Action was invoked
 };
 
-HandlenextlinkWidget.prototype._isActive = function () {
+OverridenavigationWidget.prototype._isActive = function () {
 	var state = $tw.wiki.getTiddlerData(this._stateTitle, {});
 	return state.type === this.getAttribute("type");
 };
 
-HandlenextlinkWidget.prototype._dispatchCustomEvent = function (param) {
+OverridenavigationWidget.prototype._dispatchCustomEvent = function (param) {
 	var attributes = $tw.wiki.getTiddlerData(this._stateTitle, {});
 	if (this._linkifyTitle) {
 		param = "[[" + param + "]]";
@@ -99,6 +99,6 @@ HandlenextlinkWidget.prototype._dispatchCustomEvent = function (param) {
 	$tw.wiki.deleteTiddler(this._stateTitle);
 };
 
-exports["action-handlenextlink"] = HandlenextlinkWidget;
+exports["action-overridenavigation"] = OverridenavigationWidget;
 
 })();

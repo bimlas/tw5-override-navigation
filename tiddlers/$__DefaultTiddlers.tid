@@ -3,5 +3,5 @@ modified: 20190719111836823
 title: $:/DefaultTiddlers
 type: text/vnd.tiddlywiki
 
-$:/plugins/bimlas/dispatch-on-next-action
+$:/plugins/bimlas/override-navigation
 [[Example buttons]]

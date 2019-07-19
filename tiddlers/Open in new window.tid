@@ -11,7 +11,7 @@ type: text/vnd.tiddlywiki
 \define open-in-new-window-button(class)
 	<$button tooltip="Open next link in new window" aria-label="open next link in new window"
 		class="""$(tv-config-toolbar-class)$ $class$""">
-		<$action-handlenextlink $buttonID=<<qualify>> type="tm-open-window"/>
+		<$action-overridenavigation $buttonID=<<qualify>> type="tm-open-window"/>
 			<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 				{{$:/core/images/open-window}}
 			</$list>
