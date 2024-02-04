@@ -8,8 +8,7 @@ The plugin contains a new, irregular `action-overridenavigation` [[ActionWidget|
 
 The average user has nothing else to do, just install the plugin and copy any of the [[sample buttons|Example buttons]].
 
-* https://gitlab.com/bimlas/tw5-override-navigation (official repository)
-* https://github.com/bimlas/tw5-override-navigation (mirror, ''please star if you like it'')
+* https://github.com/bimlas/tw5-override-navigation (''please star if you like it'')
 
 All the parameters you specify (expect special parameters) will be passed to the [[Widget.prototype.dispatchEvent|https://tiddlywiki.com/#%24%3A%2Fcore%2Fmodules%2Fwidgets%2Fwidget.js]] method, `param` will be the title of the link. The special parameters are:
 

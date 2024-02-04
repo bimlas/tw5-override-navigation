@@ -4,7 +4,7 @@
 	"author": "bimlas",
 	"version": "0.1.0",
 	"core-version": ">=5.1.18",
-	"source": "https://gitlab.com/bimlas/tw5-override-navigation",
+	"source": "https://github.com/bimlas/tw5-override-navigation",
 	"plugin-type": "plugin",
 	"list": "README/README"
 }
